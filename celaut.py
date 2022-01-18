@@ -25,16 +25,13 @@ def ca_step(board,code):
 def main():
 	global character
 	all_args=argparse.ArgumentParser(prog='celaut')
+	all_args.add_argument("-v","--version", action="version", version="celaut "+VERSION, help="Display version and quit")
 	all_args.add_argument(type=int, dest="code", default=120, help="Code for cellular automaton")
 	all_args.add_argument("-l", "--length", required=False, default=100, dest="length", type=int, help="Length of the board")
 	all_args.add_argument("-i","--interval", required=False, default=0.1, dest="interval", type=float, help="Interval between frames (in seconds)")
 	all_args.add_argument("-I","--iterations", required=False, default=50, dest="iterations", type=int, help="Total amount of iterations")
 	all_args.add_argument("-c","--character", required=False,default=character,dest="character",type=str,help="Character to use as an \"on\" pixel")
-	all_args.add_argument("-v","--version", required=False, default=False, dest="display_version", type=bool, help="Display version and quit")
 	args=all_args.parse_args()
-	if args.display_version:
-		print("celaut "+VERSION)
-		exit(0)
 	if not 0<=args.code<=255:
 		print("error: code must be in between 0 and 255")
 		exit(1)
