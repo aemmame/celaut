@@ -3,7 +3,7 @@ from time import sleep
 import argparse
 from random import random
 
-character="■"
+character="█"
 
 def d2b(n):
 	r=bin(n).replace("0b", "")[-8:]
