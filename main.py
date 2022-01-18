@@ -22,7 +22,7 @@ def ca_step(board,code):
 	return new_board
 def main():
 	global character
-	all_args=argparse.ArgumentParser()
+	all_args=argparse.ArgumentParser(prog='Celaut v0.01')
 	all_args.add_argument(type=int, dest="code", default=120, help="Code for cellular automaton")
 	all_args.add_argument("-l", "--length", required=False, default=100, dest="length", type=int, help="Length of the board")
 	all_args.add_argument("-i","--interval", required=False, default=0.1, dest="interval", type=float, help="Interval between frames (in seconds)")
