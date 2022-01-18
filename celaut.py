@@ -30,7 +30,7 @@ def main():
 	all_args.add_argument("-i","--interval", required=False, default=0.1, dest="interval", type=float, help="Interval between frames (in seconds)")
 	all_args.add_argument("-I","--iterations", required=False, default=50, dest="iterations", type=int, help="Total amount of iterations")
 	all_args.add_argument("-c","--character", required=False,default=character,dest="character",type=str,help="Character to use as an \"on\" pixel")
-	all_args.add_argument("-v","--version", required=False, default=False, dest=display_version, type=bool, help="Display version and quit")
+	all_args.add_argument("-v","--version", required=False, default=False, dest="display_version", type=bool, help="Display version and quit")
 	args=all_args.parse_args()
 	if args.display_version:
 		print("celaut "+VERSION)
