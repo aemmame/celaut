@@ -8,10 +8,12 @@ VERSION="0.01"
 
 character="█"
 
+# Converts integers into an 8-bit binary number in a string, overflows
 def d2b(n):
 	r=bin(n).replace("0b", "")[-8:]
 	return "0"*(8-len(r))+r
 
+# Performs a 1D CA iteration on a string (I know it's a mess but at least it works, ok)
 def ca_step(board,code):
 	new_board=""
 	code=d2b(code)[::-1]
@@ -23,6 +25,7 @@ def ca_step(board,code):
 				new_board+=(character if code[i]=="1" else " ")
 				break
 	return new_board
+
 def main():
 	global character
 	all_args=argparse.ArgumentParser(prog='celaut')
@@ -53,3 +56,5 @@ def main():
 
 if __name__=="__main__":
 	main()
+
+
