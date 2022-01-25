@@ -8,6 +8,9 @@ VERSION="0.01"
 
 character="█"
 
+# Prints to stderr
+def eprint(s):
+	print(s,file=sys.stderr)
 # Converts integers into an 8-bit binary number in a string, overflows
 def d2b(n):
 	r=bin(n).replace("0b", "")[-8:]
@@ -37,16 +40,16 @@ def main():
 	all_args.add_argument("-c","--character", required=False,default=character,dest="character",type=str,help="Character to use as an \"on\" pixel")
 	args=all_args.parse_args()
 	if not 0<=args.code<=255:
-		print("error: code must be in between 0 and 255")
+		eprint("error: code must be in between 0 and 255")
 		exit(1)
 	if len(args.character)!=1:
-		print("error: can only have 1 character as an \"on\" pixel")
+		eprint("error: can only have 1 character as an \"on\" pixel")
 		exit(1)
 	try:
 		terminal_dimensions=os.get_terminal_size()
 	except PermissionError:
 		if args.width==None or args.height==None:
-			print("error: can't figure out the terminal dimensions, specify them in the command")
+			eprint("error: can't figure out the terminal dimensions, specify them in the command")
 			exit(1)
 	if args.width==None:  args.width=terminal_dimensions[0]
 	if args.height==None: args.height=terminal_dimensions[1]-1
