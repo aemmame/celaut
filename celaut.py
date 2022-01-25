@@ -2,6 +2,7 @@
 from time import sleep
 import argparse
 from random import random
+import os
 
 VERSION="0.01"
 
@@ -27,9 +28,9 @@ def main():
 	all_args=argparse.ArgumentParser(prog='celaut')
 	all_args.add_argument("-v","--version", action="version", version="celaut "+VERSION, help="Display version and quit")
 	all_args.add_argument(type=int, dest="code", default=120, help="Code for cellular automaton")
-	all_args.add_argument("-l", "--length", required=False, default=100, dest="length", type=int, help="Length of the board")
+	all_args.add_argument("-l", "--length", required=False, default=None, dest="length", type=int, help="Length of the board")
 	all_args.add_argument("-i","--interval", required=False, default=0.1, dest="interval", type=float, help="Interval between frames (in seconds)")
-	all_args.add_argument("-I","--iterations", required=False, default=50, dest="iterations", type=int, help="Total amount of iterations")
+	all_args.add_argument("-I","--iterations", required=False, default=None, dest="iterations", type=int, help="Total amount of iterations")
 	all_args.add_argument("-c","--character", required=False,default=character,dest="character",type=str,help="Character to use as an \"on\" pixel")
 	args=all_args.parse_args()
 	if not 0<=args.code<=255:
@@ -38,6 +39,9 @@ def main():
 	if len(args.character)!=1:
 		print("error: can only have 1 character as an \"on\" pixel")
 		exit(1)
+	terminal_dimensions=os.get_terminal_size()
+	if args.length==None:     args.length=terminal_dimensions[0]
+	if args.iterations==None: args.iterations=terminal_dimensions[1]-1
 	character=args.character
 	board="".join(
 		[(character if random() > 0.5 else " ") for _ in range(args.length)]
