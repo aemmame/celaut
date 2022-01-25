@@ -36,7 +36,7 @@ def main():
 	all_args.add_argument(type=int, dest="code", default=120, help="Code of the cellular automaton")
 	all_args.add_argument("-W", "--width", required=False, default=None, dest="width", type=int, help="Width of the result")
 	all_args.add_argument("-H","--height", required=False, default=None, dest="height", type=int, help="Height of the result")
-	all_args.add_argument("-i","--interval", required=False, default=0.1, dest="interval", type=float, help="Interval between frames (in seconds)")
+	all_args.add_argument("-i","--interval", required=False, default=0, dest="interval", type=float, help="Interval between frames (in seconds)")
 	all_args.add_argument("-c","--character", required=False,default=character,dest="character",type=str,help="Character to use as an \"on\" pixel")
 	args=all_args.parse_args()
 	if not 0<=args.code<=255:
