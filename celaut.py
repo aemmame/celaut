@@ -18,9 +18,11 @@ def ca_step(board,code):
 	new_board=""
 	code=d2b(code)[::-1]
 	for x,pixel in enumerate(board):
-		state=[board[(x-1)%len(board)]==character,board[x]==character,board[(x+1)%len(board)]==character]
+		state= [board[(x-1)%len(board)] == character,
+			board[x]                == character,
+			board[(x+1)%len(board)] == character]
 		for i,case in enumerate(code):
-			casestate=[(True if c=="1" else False) for c in d2b(i)[::-1][:3]]
+			casestate=[c=="1" for c in d2b(i)[::-1][:3]]
 			if casestate==state:
 				new_board+=(character if code[i]=="1" else " ")
 				break
@@ -36,15 +38,19 @@ def main():
 	all_args.add_argument("-i","--interval", required=False, default=0, dest="interval", type=float, help="Interval between frames (in seconds)")
 	all_args.add_argument("-c","--character", required=False,default=character,dest="character",type=str,help="Character to use as an \"on\" pixel")
 	args=all_args.parse_args()
-	if not 0<=args.code<=255: exit("error: code must be in between 0 and 255")
-	if len(args.character)!=1:exit("error: can only have 1 character as an \"on\" pixel")
+	if not 0<=args.code<=255:
+		exit("error: code must be in between 0 and 255")
+	if len(args.character)!=1:
+		exit("error: can only have 1 character as an \"on\" pixel")
 	try:
 		terminal_dimensions=os.get_terminal_size()
 	except PermissionError:
 		if args.width==None or args.height==None:
 			exit("error: can't figure out the terminal dimensions, specify them in the command")
-	if args.width==None:  args.width=terminal_dimensions[0]
-	if args.height==None: args.height=terminal_dimensions[1]-1
+	if args.width==None:
+		args.width=terminal_dimensions[0]
+	if args.height==None:
+		args.height=terminal_dimensions[1]-1
 	character=args.character
 	board="".join(
 		[(character if random() > 0.5 else " ") for _ in range(args.width)]
