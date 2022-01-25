@@ -1,6 +1,8 @@
 # celaut
 cellular automata thingy
 
+~~celaut as in sellout because i will advertise anything in the README if sponsored~~
+
 ```
 $ ./celaut.py 22 -i 0 -W 100 -H 32
 ██ ██      █   ███   █    █     █ █ █████    ██ █  █  ██  ██    ████████ ███   ███  █ █      █  █ █ 
