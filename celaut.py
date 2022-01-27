@@ -44,7 +44,7 @@ def main():
 		exit("error: can only have 1 character as an \"on\" pixel")
 	try:
 		terminal_dimensions=os.get_terminal_size()
-	except PermissionError:
+	except:
 		if args.width==None or args.height==None:
 			exit("error: can't figure out the terminal dimensions, specify them in the command")
 	if args.width==None:
